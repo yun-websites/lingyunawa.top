@@ -4,6 +4,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
+import { Analytics } from "@vercel/analytics/next"
+
 const fontSans = Geist({
     subsets: ["latin"],
     variable: "--font-sans",
@@ -21,6 +23,8 @@ export default function RootLayout({
             <body>
                 <ThemeProvider>{children}</ThemeProvider>
             </body>
+
+            <Analytics />
         </html>
     )
 }

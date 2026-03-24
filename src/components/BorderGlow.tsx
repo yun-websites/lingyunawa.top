@@ -218,8 +218,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
                 transform: "translate3d(0, 0, 0.01px)",
                 boxShadow:
                     "rgba(0,0,0,0.1) 0 1px 2px, rgba(0,0,0,0.1) 0 2px 4px, rgba(0,0,0,0.1) 0 4px 8px, rgba(0,0,0,0.1) 0 8px 16px, rgba(0,0,0,0.1) 0 16px 32px, rgba(0,0,0,0.1) 0 32px 64px",
-            }}
-        >
+            }}>
             {/* mesh gradient border */}
             <div
                 className="absolute inset-0 -z-[1] rounded-[inherit]"
@@ -283,8 +282,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
                         mixBlendMode: "plus-lighter",
                         transition: isVisible ? "opacity 0.25s ease-out" : "opacity 0.75s ease-in-out",
                     } as React.CSSProperties
-                }
-            >
+                }>
                 <span
                     className="absolute rounded-[inherit]"
                     style={{

@@ -94,13 +94,15 @@ export default function Page() {
         },
         {
             title: "Prime-Light/SyncmaticaLand.App",
-            description: "A platform for sharing Minecraft schematics — upload your builds, explore thousands of community creations, and reuse high-quality designs more efficiently to save time and spark new ideas.",
+            description:
+                "A platform for sharing Minecraft schematics — upload your builds, explore thousands of community creations, and reuse high-quality designs more efficiently to save time and spark new ideas.",
             tech: ["Next.js", "Tailwind CSS", "TypeScript"],
             link: "https://github.com/Prime-Light/SyncmaticaLand.App",
         },
         {
             title: "IntlEDU Docs",
-            description: "A platform offers comprehensive IGCSE Physics course materials, including clear chapter explanations, precise concept definitions, and essential key knowledge points.",
+            description:
+                "A platform offers comprehensive IGCSE Physics course materials, including clear chapter explanations, precise concept definitions, and essential key knowledge points.",
             tech: ["Astro", "MDX", "Starlight"],
             link: "https://github.com/yun-websites/intledu-docs",
         },
@@ -220,7 +222,7 @@ export default function Page() {
                                                 </Button>
                                             </div>
                                             <p className="mb-4 text-muted-foreground">{project.description}</p>
-                                            <div className="flex flex-wrap gap-2 absolute bottom-5">
+                                            <div className="absolute bottom-5 flex flex-wrap gap-2">
                                                 {project.tech.map((tech, techIndex) => (
                                                     <Badge key={techIndex} variant="secondary" className="text-xs">
                                                         {tech}
