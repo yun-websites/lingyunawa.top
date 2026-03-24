@@ -1,15 +1,13 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { LucideIcons, LetterGlitch, BorderGlow } from "@/components"
+import { LucideIcons, LetterGlitch, BorderGlow, Radix } from "@/components"
 import { Icon } from "@iconify/react"
 import { cn } from "@/lib/utils"
 import { scrollToBySelector, scrollToByOffset } from "@/lib/scroll"
 import Image from "next/image"
+import Link from "next/link"
+
+const { Button, Avatar, AvatarFallback, AvatarImage, Card, CardContent, Badge, Separator, Sheet, SheetTrigger, SheetContent } = Radix
 
 export default function Page() {
     // 个人信息
@@ -36,7 +34,7 @@ export default function Page() {
             { name: "CSS", icon: "vscode-icons:file-type-css" },
             { name: "JavaScript", icon: "vscode-icons:file-type-js" },
             { name: "TypeScript", icon: "vscode-icons:file-type-typescript" },
-            { name: "Tailwind CSS", icon: "vscode-icons:file-type-tailwind" },
+            { name: "Tailwind CSS", icon: "vscode-icons:file-type-tailwind", long: true },
         ],
         // 前端库
         [
@@ -120,7 +118,7 @@ export default function Page() {
             <nav className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-md">
                 <div className="container mx-auto flex items-center justify-between px-4 py-4">
                     <div className="text-lg font-semibold">{personalInfo.name}&apos;s Home</div>
-                    <div className="flex items-center gap-4">
+                    <div className="hidden items-center gap-4 lg:flex">
                         <Button variant="ghost" size="sm" onClick={() => scrollToByOffset(0)}>
                             Home
                         </Button>
@@ -134,6 +132,19 @@ export default function Page() {
                             Contact
                         </Button>
                     </div>
+                    <Sheet>
+                        <SheetTrigger className="md:hidden">
+                            <LucideIcons.Menu className="h-6 w-6" />
+                        </SheetTrigger>
+                        <SheetContent side="right" className="w-64 p-4">
+                            <nav className="flex flex-col gap-4">
+                                <span onClick={() => scrollToByOffset(0)}>Home</span>
+                                <span onClick={() => scrollToBySelector("#skills")}>Skills</span>
+                                <span onClick={() => scrollToBySelector("#projects")}>Projects</span>
+                                <span onClick={() => scrollToBySelector("#contact")}>Contact</span>
+                            </nav>
+                        </SheetContent>
+                    </Sheet>
                 </div>
             </nav>
 
@@ -181,7 +192,7 @@ export default function Page() {
                     {/* 技能区域 */}
                     <section className="mb-16" id="skills">
                         <h2 className="mb-8 text-center text-2xl font-bold">Skills</h2>
-                        <div className="flex flex-col items-center gap-3">
+                        <div className="hidden flex-col items-center gap-3 lg:flex">
                             {skills.map((group, idx) => (
                                 <div key={idx} className="flex gap-3">
                                     {group.map((skill, index) => (
@@ -206,6 +217,34 @@ export default function Page() {
                                     ))}
                                 </div>
                             ))}
+                        </div>
+                        <div className="grid grid-cols-3 gap-y-4 lg:hidden">
+                            {skills.map((group) =>
+                                group.map((skill, index) => (
+                                    <Badge
+                                        key={index}
+                                        variant="outline"
+                                        className="px-4 py-2"
+                                        style={{ gridColumn: skill.long ? "span 2" : "span 1" }}>
+                                        {skill.icon.includes(":") ? (
+                                            <Icon icon={skill.icon} className="mr-px size-4" />
+                                        ) : (
+                                            <Image
+                                                src={skill.icon.split("|")[0]}
+                                                width={Number(skill.icon.split("|")[1])}
+                                                height={Number(skill.icon.split("|")[2])}
+                                                alt={skill.name}
+                                                className={cn("mr-px", skill.icon.split("|").length < 4 ? "size-4" : "")}
+                                                style={{
+                                                    width: skill.icon.split("|")[3] + "px" || "",
+                                                    height: skill.icon.split("|")[4] + "px" || "",
+                                                }}
+                                            />
+                                        )}
+                                        {skill.name}
+                                    </Badge>
+                                ))
+                            )}
                         </div>
                     </section>
 
