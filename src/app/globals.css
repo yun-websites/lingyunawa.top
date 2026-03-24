@@ -126,4 +126,11 @@
     html {
         @apply font-mono select-none;
     }
+
+    ::-webkit-scrollbar {
+        @apply bg-background w-2;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-primary border-2 border-background;
+    }
 }
