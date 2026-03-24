@@ -9,6 +9,7 @@ import { LucideIcons, LetterGlitch, BorderGlow } from "@/components"
 import { Icon } from "@iconify/react"
 import { cn } from "@/lib/utils"
 import { scrollToBySelector, scrollToByOffset } from "@/lib/scroll"
+import Image from "next/image"
 
 export default function Page() {
     // 个人信息
@@ -37,14 +38,19 @@ export default function Page() {
             { name: "TypeScript", icon: "vscode-icons:file-type-typescript" },
             { name: "Tailwind CSS", icon: "vscode-icons:file-type-tailwind" },
         ],
-        // 框架
+        // 前端库
         [
             { name: "Vue", icon: "vscode-icons:file-type-vue" },
-            { name: "Nuxt.js", icon: "vscode-icons:file-type-nuxt" },
-            { name: "DaisyUI", icon: "logos:daisyui-icon" },
+            { name: "daisyUI", icon: "logos:daisyui-icon" },
             { name: "React", icon: "vscode-icons:file-type-reactjs" },
+            { name: "shadcn/ui", icon: "vscode-icons:file-type-shadcn" },
+            { name: "Astro", icon: "vscode-icons:file-type-astro" },
+            { name: "Starlight", icon: "/starlight.svg|25|26|size-3" },
+        ],
+        // 框架
+        [
+            { name: "Nuxt.js", icon: "vscode-icons:file-type-nuxt" },
             { name: "Next.js", icon: "vscode-icons:file-type-next" },
-            { name: "ShadCN UI", icon: "vscode-icons:file-type-shadcn" },
             { name: "Wails", icon: "simple-icons:wails" },
             { name: "Tauri", icon: "vscode-icons:file-type-tauri" },
         ],
@@ -180,7 +186,17 @@ export default function Page() {
                                 <div key={idx} className="flex gap-3">
                                     {group.map((skill, index) => (
                                         <Badge key={index} variant="outline" className="px-4 py-2">
-                                            <Icon icon={skill.icon} className="mr-px size-4" />
+                                            {skill.icon.includes(":") ? (
+                                                <Icon icon={skill.icon} className="mr-px size-4" />
+                                            ) : (
+                                                <Image
+                                                    src={skill.icon.split("|")[0]}
+                                                    width={Number(skill.icon.split("|")[1])}
+                                                    height={Number(skill.icon.split("|")[2])}
+                                                    alt={skill.name}
+                                                    className={cn("mr-px", skill.icon.split("|")[3])}
+                                                />
+                                            )}
                                             {skill.name}
                                         </Badge>
                                     ))}
