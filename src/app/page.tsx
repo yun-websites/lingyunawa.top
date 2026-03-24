@@ -45,7 +45,7 @@ export default function Page() {
             { name: "React", icon: "vscode-icons:file-type-reactjs" },
             { name: "shadcn/ui", icon: "vscode-icons:file-type-shadcn" },
             { name: "Astro", icon: "vscode-icons:file-type-astro" },
-            { name: "Starlight", icon: "/starlight.svg|25|26|size-3" },
+            { name: "Starlight", icon: "/starlight.svg|25|26|12|12" },
         ],
         // 框架
         [
@@ -194,7 +194,11 @@ export default function Page() {
                                                     width={Number(skill.icon.split("|")[1])}
                                                     height={Number(skill.icon.split("|")[2])}
                                                     alt={skill.name}
-                                                    className={cn("mr-px", skill.icon.split("|")[3])}
+                                                    className={cn("mr-px", skill.icon.split("|").length < 4 ? "size-4" : "")}
+                                                    style={{
+                                                        width: skill.icon.split("|")[3] + "px" || "",
+                                                        height: skill.icon.split("|")[4] + "px" || "",
+                                                    }}
                                                 />
                                             )}
                                             {skill.name}
